@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f5f8fc;
+  --foreground: #0f172a;
+  --surface: #ffffff;
+  --navy: #0f1e39;
+  --blue: #2563eb;
+  --line: #d9e3f0;
+  --muted: #64748b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top, rgba(37, 99, 235, 0.08), transparent 28%),
+    linear-gradient(180deg, #f5f8fc 0%, #ffffff 30%, #f8fbff 100%);
+  color: var(--foreground);
+  font-family:
+    "Segoe UI", "Noto Sans KR", "Hiragino Sans", "Yu Gothic", sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+input,
+textarea {
+  font: inherit;
+}
+
+@layer components {
+  .primary-button {
+    @apply inline-flex items-center rounded-full bg-navy px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-blue;
+  }
+
+  .secondary-button {
+    @apply inline-flex items-center rounded-full border border-navy px-6 py-3.5 text-sm font-semibold text-navy transition hover:border-blue hover:text-blue;
+  }
+
+  .panel {
+    @apply rounded-[28px] border border-line bg-white shadow-panel;
+  }
+}
