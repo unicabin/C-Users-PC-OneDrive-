@@ -2,16 +2,21 @@
 
 import { FormEvent, useState } from "react";
 import { Bell, LogOut, Menu, Search, ShieldCheck } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import { useAuth } from "@/components/providers/auth-provider";
 import { MobileNav } from "@/components/layout/mobile-nav";
+import { getPageMeta } from "@/data/page-meta";
 
 export function Header() {
   const router = useRouter();
+  const rawPathname = usePathname();
+  const pathname = rawPathname ?? "/";
   const { user, signOut, loading } = useAuth();
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+
+  const pageMeta = getPageMeta(pathname);
 
   function handleSearch(e: FormEvent) {
     e.preventDefault();
@@ -42,10 +47,8 @@ export function Header() {
               <Menu className="h-5 w-5" />
             </button>
             <div>
-              <p className="text-sm font-medium text-brand-700">통합 관리자 대시보드</p>
-              <h2 className="mt-1 text-2xl font-semibold tracking-tight text-slate-900">
-                RAG/ML 기반 제품개발 의사결정 지원
-              </h2>
+              <p className="text-sm font-medium text-brand-700">{pageMeta.label}</p>
+              <p className="mt-1 text-sm text-slate-500">{pageMeta.description}</p>
             </div>
           </div>
 
